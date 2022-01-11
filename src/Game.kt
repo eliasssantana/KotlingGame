@@ -1,8 +1,8 @@
 fun main(){
     val options = arrayOf("Rock","Paper","Scissors")
     val gameChoice = getGameChoice(options)
-    val userChoice = getUserChice(options)
-//    for ((i, v) in options.withIndex()) println("No index $i está $v")
+    val userChoice = getUserChoice(options)
+    printResult(userChoice, gameChoice)
 }
 
 fun getGameChoice(optionsParam: Array<String>): String = optionsParam[(Math.random() * optionsParam.size).toInt()]
@@ -14,10 +14,11 @@ fun getUserChoice(optionsParam: Array<String>): String{
     while (!isValidChoice){
         // Ask the user for their choice
         print("Please enter one of the following: ")
-        for(item in optionsParam) println("$item")
+        for(item in optionsParam) print("$item ")
         println(".")
         // Read the user input
         val userInput = readLine()
+
         // Validate the user input
         if(userInput != null && userInput in optionsParam){
             isValidChoice = true
@@ -31,7 +32,7 @@ fun getUserChoice(optionsParam: Array<String>): String{
 
 fun printResult(userChoice: String, gameChoice: String){
     val result: String
-    if(userChoice == gameChoice) result = "Tie!"
+    if (userChoice == gameChoice) result = "Tie!"
     else if (
         (userChoice == "Rock" && gameChoice == "Scissors") ||
         (userChoice == "Paper" && gameChoice == "Rock") ||
@@ -39,5 +40,6 @@ fun printResult(userChoice: String, gameChoice: String){
     ) result = "You win!"
     else result = "You lose!"
     // Print the result
+    println("You chose $userChoice. I chose $gameChoice. $result")
 }
 
